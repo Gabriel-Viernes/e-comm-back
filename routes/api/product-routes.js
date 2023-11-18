@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
   } catch(err) {
     res.status(500).json(err)
   }
-  // find all products
-  // be sure to include its associated Category and Tag data
 });
 
 // get one product
@@ -27,9 +25,9 @@ router.get('/:id', (req, res) => {
         Tag, Category
       ]
     })
+  } catch (err) {
+    res.status(500).json(err)
   }
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
 });
 
 // create new product
