@@ -3,9 +3,9 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const allCat = Category.findAll({
+    const allCat = await Category.findAll({
       include: [{
         model: Product
       }]
@@ -17,9 +17,9 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const oneCat = Category.findByPk({
+    const oneCat = await Category.findByPk({
       include: [{
         model: Product
       }]
@@ -60,10 +60,10 @@ router.put('/:id', (req, res) => {
   })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
-    const delCat = Category.destroy(req.body, {
+    const delCat = await Category.destroy( {
       where: {
         id: req.params.id
       }
@@ -71,8 +71,11 @@ router.delete('/:id', (req, res) => {
     if(!delCat) {
       res.status(404).json({message: "No Category found with provided id"})
       return
+    } else {
+      res.status(200).json({ message: "Category deleted!"})
     }
   } catch (err) {
+    console.log(err)
     res.status(500).json(err)
   }
 });
