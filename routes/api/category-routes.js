@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     }
   }).then((newCat) => {
-    res.status(200).json(newCat)
+    res.status(200).json({ message: "Category updated"} )
   }).catch((err) => {
     console.log(err)
     res.status(400).json(err)

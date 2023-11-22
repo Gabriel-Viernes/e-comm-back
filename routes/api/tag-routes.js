@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     }
   }).then((product) => {
-    res.status(200).json(product)
+    res.status(200).json({ message: "Tag updated!"})
   }).catch((err) => {
     console.log(err)
     res.status(400).json(err)
