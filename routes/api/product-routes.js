@@ -25,6 +25,7 @@ router.get('/:id', async (req, res) => {
         Tag, Category
       ]
     })
+    res.status(200).json(oneProd)
   } catch (err) {
     res.status(500).json(err)
   }
